@@ -5,7 +5,7 @@ import websockets
 
 app = Flask(__name__)
 
-TARGET_URL = 'https://shellshock.io/'
+TARGET_URL = 'https://copter.io/'
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
@@ -32,7 +32,7 @@ def ws_proxy(path):
     return Response(stream_with_context(forward_websocket(path)), content_type='text/event-stream')
 
 async def forward_websocket(path):
-    ws_url = f"wss://shellshock.io/{path}"
+    ws_url = f"wss://copter.io/{path}"
     async with websockets.connect(ws_url) as websocket:
         while True:
             message = await websocket.recv()
